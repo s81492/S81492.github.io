@@ -54,15 +54,16 @@
             display: flex;
             flex-direction: column;
             overflow: hidden; 
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            /* Subtle Zoom/Scale Hover Effect */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
             min-height: 100px;
         }
 
         .bento-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transform: scale(1.01); /* Subtle zoom */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08); /* Slightly more pronounced shadow */
         }
-
+        
         /* Typography */
         .card-title {
             font-size: 1.25rem;
@@ -109,7 +110,39 @@
             grid-column: span 2;
             grid-row: span 2;
             justify-content: space-between;
+            
+            /* === START: BACKGROUND IMAGE UPDATE === */
+            background-image: url('bg.jpg'); /* Sets bg.jpg as the background image */
+            background-size: cover; /* Ensures the image fills the card */
+            background-position: center; /* Centers the image */
+            background-repeat: no-repeat; /* No tiling */
+            
+            /* Optional: Change text color for readability over a dark image */
+            color: #FFFFFF; /* White text for better contrast */
         }
+        
+        /* Since the card-profile text color is changed to white, update its children */
+        .card-profile .card-subtitle, 
+        .card-profile .detail-item, 
+        .card-profile .detail-item strong,
+        .card-profile .profile-name {
+            color: inherit; /* Inherits the white color */
+        }
+
+        .card-profile .accent-text {
+            color: #B3D9FF; /* A lighter blue accent for contrast over the image */
+        }
+        
+        .card-profile .social-links a {
+            color: #B3D9FF;
+        }
+        
+        .card-profile .social-links a:hover {
+            color: #E6F3FF;
+        }
+        
+        /* === END: BACKGROUND IMAGE UPDATE === */
+
 
         .profile-header {
             margin-bottom: 20px;
@@ -118,19 +151,16 @@
         .profile-name {
             font-size: 2rem;
             font-weight: 800;
-            color: var(--color-text-primary);
+            /* color: var(--color-text-primary); <- Removed due to image */
         }
 
+        /* Social Links styling and functionality */
         .social-links a {
-            color: var(--color-accent);
+            /* color: var(--color-accent); <- Updated above for image contrast */
             text-decoration: none;
             font-weight: 500;
             margin-right: 15px;
             transition: color 0.2s;
-        }
-
-        .social-links a:hover {
-            color: #003B75; /* Darker accent on hover */
         }
 
         /* Card 2 (Location): Small box (1x1) */
@@ -160,10 +190,10 @@
             grid-row: span 1;
         }
 
-        /* Card 4 (Case Study/Lab): Medium box (2x1) */
+        /* Card 4 (Case Study/Lab): Medium box (2x1) - Repositioned */
         .card-case-study {
             grid-column: span 2;
-            grid-row: span 1;
+            grid-row: 3 / span 1; /* Moved to row 3 (after the 2-row profile) */
         }
 
         .case-study-title {
@@ -173,10 +203,10 @@
             margin-bottom: 10px;
         }
 
-        /* Card 5 (Hobby/Activity): Small box (1x1) */
+        /* Card 5 (Hobby/Activity): Small box (1x1) - Repositioned */
         .card-hobby {
-            grid-column: span 1;
-            grid-row: span 1;
+            grid-column: 3 / span 1; /* Starts in column 3 */
+            grid-row: 2 / span 1; /* Fills the bottom right of the initial 2x2 area */
             align-items: center;
             justify-content: center;
             text-align: center;
@@ -186,6 +216,12 @@
             font-size: 1.1rem;
             font-weight: 600;
             color: var(--color-text-primary);
+        }
+        
+        /* Card 7 (Reflection) - New Card (2x1) */
+        .card-reflection {
+            grid-column: 3 / span 2; /* Starts in column 3, spans 2 columns */
+            grid-row: 3 / span 1; /* Aligns with Case Study on row 3 */
         }
 
 
@@ -197,6 +233,8 @@
             justify-content: center;
             text-align: center;
             min-height: 120px;
+            /* Explicitly set to the final row */
+            grid-row: 4 / span 1; 
         }
 
         .playlist-placeholder {
@@ -217,7 +255,7 @@
             }
 
             .bento-card {
-                /* Reset grid span to 1 column and auto row for stacking */
+                /* Reset grid span and row to auto for stacking */
                 grid-column: span 1 !important;
                 grid-row: auto !important;
                 padding: 20px;
@@ -253,16 +291,16 @@
             </div>
             <div class="social-links">
                 <p class="card-subtitle">Connect & Resources</p>
-                <a href="#linkedin">LinkedIn</a>
-                <a href="#github">GitHub</a>
-                <a href="#portal">UMT Portal</a>
+                <a href="#" target="_blank">LinkedIn</a>
+                <a href="#" target="_blank">GitHub</a>
+                <a href="#" target="_blank">UMT Portal</a>
             </div>
         </div>
 
         <div class="bento-card card-location">
             <p class="location-campus">UMT</p>
             <p class="location-time">Kuala Nerus, Terengganu</p>
-            <p class="location-time">2:58 PM (Local Time)</p>
+            <p class="location-time">3:47 PM (Local Time)</p>
         </div>
 
         <div class="bento-card card-tech-stack">
@@ -280,13 +318,21 @@
             <p class="hobby-activity">Evening Walks</p>
             <p class="card-content-text" style="font-size: 0.85rem; margin-top: 8px;">at Pantai UMT</p>
         </div>
-
+        
         <div class="bento-card card-case-study">
             <h3 class="card-title">Current Research Interest</h3>
             <p class="card-subtitle"><span class="accent-text">Title:</span> Starch Gelatinization in Local Kuih</p>
             <p class="card-content-text">
                 <strong class="accent-text">Focus:</strong> Analyzing texture profiles of traditional Kuih Lapis.
                 Investigating how varying ratios and processing techniques influence the structural integrity and sensory properties of starch-based Malaysian desserts.
+            </p>
+        </div>
+        
+        <div class="bento-card card-reflection">
+            <h3 class="card-title">Why Food Tech Matters in Malaysia</h3>
+            <p class="card-content-text">
+                <strong class="accent-text">Goal:</strong> Sustainable food security is crucial for our future. 
+                By optimizing local processing methods, we can reduce waste and improve nutrition across the nation.
             </p>
         </div>
 
