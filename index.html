@@ -191,35 +191,33 @@
             color: var(--color-text-primary);
         }
         
-        /* Card 4 (Case Study/Lab) - Redesigned with 2 Columns */
+        /* UPDATED: Card 4 (Case Study/Lab) - 2 Column Layout */
         .card-case-study {
             grid-column: span 2;
             grid-row: 3 / span 1; 
             display: grid;
             grid-template-columns: 1fr auto;
-            gap: 20px;
             align-items: center;
+            gap: 24px;
         }
 
-        .lab-app-button {
-            display: inline-block;
+        .lab-btn {
             background-color: var(--color-accent);
-            color: white;
-            padding: 12px 20px;
-            border-radius: 8px;
+            color: #FFFFFF !important;
             text-decoration: none;
+            padding: 14px 24px;
+            border-radius: 8px;
             font-weight: 600;
             font-size: 0.9rem;
             transition: all 0.3s ease;
-            white-space: nowrap;
-            border: 2px solid var(--color-accent);
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 76, 153, 0.1);
         }
 
-        .lab-app-button:hover {
-            background-color: transparent;
-            color: var(--color-accent);
+        .lab-btn:hover {
+            background-color: #003366;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 76, 153, 0.2);
+            box-shadow: 0 6px 12px rgba(0, 76, 153, 0.2);
         }
         
         .card-reflection {
@@ -256,11 +254,6 @@
 
             .card-case-study {
                 grid-template-columns: 1fr;
-            }
-
-            .lab-app-button {
-                width: 100%;
-                text-align: center;
             }
 
             .profile-name {
@@ -318,17 +311,14 @@
         </div>
         
         <div class="bento-card card-case-study">
-            <div class="case-study-content">
+            <div>
                 <h3 class="card-title">Current Research Interest</h3>
                 <p class="card-subtitle"><span class="accent-text">Title:</span> Starch Gelatinization in Local Kuih</p>
                 <p class="card-content-text">
-                    <strong class="accent-text">Focus:</strong> Analyzing texture profiles of traditional Kuih Lapis.
-                    Investigating techniques influence Malaysian desserts.
+                    <strong class="accent-text">Focus:</strong> Analyzing texture profiles of traditional Kuih Lapis and structural integrity of starch-based Malaysian desserts.
                 </p>
             </div>
-            <div class="case-study-action">
-                <a href="https://example.com/lab-timer" class="lab-app-button">Try My Lab Timer App</a>
-            </div>
+            <a href="https://s81492.github.io/lab-timer-app/app.html" target="_blank" class="lab-btn">Try My Lab Timer App</a>
         </div>
         
         <div class="bento-card card-reflection">
