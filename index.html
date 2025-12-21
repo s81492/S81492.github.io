@@ -104,27 +104,19 @@
 
         /* Layout-Specific Card Sizing for Desktop (4-column grid) */
 
-        /* Card 1 (Profile): Large box (2x2) */
         .card-profile {
             grid-column: span 2;
             grid-row: span 2;
             justify-content: space-between;
-            
-            /* === BACKGROUND IMAGE IMPLEMENTATION === */
             background-image: url('bg.jpg'); 
             background-size: cover; 
             background-position: center; 
             background-repeat: no-repeat; 
-            
-            /* Apply a slight dark overlay using blend mode for better text contrast */
             background-blend-mode: multiply;
             background-color: rgba(0, 0, 0, 0.4); 
-            
-            /* Set text white for contrast over the image */
             color: #FFFFFF; 
         }
         
-        /* Adjust text colors within the profile card to inherit white */
         .card-profile .card-subtitle, 
         .card-profile .detail-item, 
         .card-profile .detail-item strong,
@@ -133,7 +125,7 @@
         }
 
         .card-profile .accent-text {
-            color: #B3D9FF; /* Lighter blue accent for contrast */
+            color: #B3D9FF; 
         }
         
         .card-profile .social-links a {
@@ -143,8 +135,6 @@
         .card-profile .social-links a:hover {
             color: #E6F3FF;
         }
-        /* === END: BACKGROUND IMAGE IMPLEMENTATION === */
-
 
         .profile-header {
             margin-bottom: 20px;
@@ -155,7 +145,6 @@
             font-weight: 800;
         }
 
-        /* Social Links styling and functionality */
         .social-links a {
             text-decoration: none;
             font-weight: 500;
@@ -163,7 +152,6 @@
             transition: color 0.2s;
         }
 
-        /* Card 2 (Location): Small box (1x1) */
         .card-location {
             grid-column: span 1;
             grid-row: span 1;
@@ -184,13 +172,11 @@
             margin-top: 4px;
         }
 
-        /* Card 3 (Tech Stack/Subjects): Medium box (1x1) */
         .card-tech-stack {
             grid-column: span 1;
             grid-row: span 1;
         }
 
-        /* Card 5 (Hobby/Activity): Small box (1x1) */
         .card-hobby {
             grid-column: 3 / span 1; 
             grid-row: 2 / span 1; 
@@ -205,27 +191,42 @@
             color: var(--color-text-primary);
         }
         
-        /* Card 4 (Case Study/Lab) - Medium Box (2x1) */
+        /* Card 4 (Case Study/Lab) - Redesigned with 2 Columns */
         .card-case-study {
             grid-column: span 2;
             grid-row: 3 / span 1; 
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 20px;
+            align-items: center;
         }
 
-        .case-study-title {
-            font-size: 1.1rem;
+        .lab-app-button {
+            display: inline-block;
+            background-color: var(--color-accent);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
             font-weight: 600;
-            color: var(--color-text-primary);
-            margin-bottom: 10px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            border: 2px solid var(--color-accent);
+        }
+
+        .lab-app-button:hover {
+            background-color: transparent;
+            color: var(--color-accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 76, 153, 0.2);
         }
         
-        /* Card 7 (Reflection) - New Card (2x1) */
         .card-reflection {
             grid-column: 3 / span 2; 
             grid-row: 3 / span 1; 
         }
 
-
-        /* Card 6 (Playlist): Wide box (4x1) */
         .card-playlist {
             grid-column: span 4;
             display: flex;
@@ -236,13 +237,7 @@
             grid-row: 4 / span 1; 
         }
 
-        .playlist-placeholder {
-            font-size: 1.1rem;
-            color: var(--color-text-secondary);
-        }
-
-
-        /* Mobile Responsiveness (Screen width < 768px) */
+        /* Mobile Responsiveness */
         @media (max-width: 767px) {
             body {
                 padding: 16px;
@@ -259,12 +254,17 @@
                 padding: 20px;
             }
 
-            .profile-name {
-                font-size: 1.75rem;
+            .card-case-study {
+                grid-template-columns: 1fr;
             }
 
-            .card-title {
-                font-size: 1.15rem;
+            .lab-app-button {
+                width: 100%;
+                text-align: center;
+            }
+
+            .profile-name {
+                font-size: 1.75rem;
             }
 
             .card-playlist {
@@ -318,12 +318,17 @@
         </div>
         
         <div class="bento-card card-case-study">
-            <h3 class="card-title">Current Research Interest</h3>
-            <p class="card-subtitle"><span class="accent-text">Title:</span> Starch Gelatinization in Local Kuih</p>
-            <p class="card-content-text">
-                <strong class="accent-text">Focus:</strong> Analyzing texture profiles of traditional Kuih Lapis.
-                Investigating how varying ratios and processing techniques influence the structural integrity and sensory properties of starch-based Malaysian desserts.
-            </p>
+            <div class="case-study-content">
+                <h3 class="card-title">Current Research Interest</h3>
+                <p class="card-subtitle"><span class="accent-text">Title:</span> Starch Gelatinization in Local Kuih</p>
+                <p class="card-content-text">
+                    <strong class="accent-text">Focus:</strong> Analyzing texture profiles of traditional Kuih Lapis.
+                    Investigating techniques influence Malaysian desserts.
+                </p>
+            </div>
+            <div class="case-study-action">
+                <a href="https://example.com/lab-timer" class="lab-app-button">Try My Lab Timer App</a>
+            </div>
         </div>
         
         <div class="bento-card card-reflection">
@@ -338,7 +343,7 @@
             <h3 class="card-title" style="margin-bottom: 0;">
                 <span class="accent-text">🎧 Study Mix:</span> Concentration Music Player Placeholder
             </h3>
-<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/5WJtuMqSdxcbuNvouacT37?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <iframe data-testid="embed-iframe" style="border-radius:12px; margin-top: 15px;" src="https://open.spotify.com/embed/track/5WJtuMqSdxcbuNvouacT37?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
 
     </div>
